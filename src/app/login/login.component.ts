@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   async createAccount(){
+    this._markFormGroupTouched(this.formGroup);
     if(!this.formGroup.valid) return;
     const v = this.formGroup?.value;
     try {
@@ -59,9 +60,10 @@ export class LoginComponent implements OnInit {
         }
       ).afterClosed().subscribe(()=>{
         this.formGroup.setValue({
-          name: "",
+          pseudo: "",
           password: ""
         });
+        this.formGroup.markAsUntouched();
       });
     } catch (error) {
       this.errorLogged = of(true);
@@ -69,7 +71,16 @@ export class LoginComponent implements OnInit {
       this.isLoading = of(false);
     }
   }
+  private _markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach((control: any) => {
+      control.markAsTouched();
+      if (control.controls) {
+        this._markFormGroupTouched(control);
+      }
+    });
+  }
   async loginAccount() {
+    this._markFormGroupTouched(this.formGroup);
     if(!this.formGroup.valid) return;
     const v = this.formGroup?.value;
     this.isLoading = of(true);

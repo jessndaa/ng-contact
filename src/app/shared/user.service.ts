@@ -26,10 +26,10 @@ export class UserService {
   }
 
   Create(data: {name: string; password: string;}) {
-    return this.http.post( `${AppState.apibaseurl}/user/create`, data).toPromise();
+    return this.http.post( `${AppState.apibaseurl}user/create`, data).toPromise();
   }
   update(data: {name: string; password: string;}) {
-    return this.http.put( `${AppState.apibaseurl}/user/update`, data, {
+    return this.http.put( `${AppState.apibaseurl}user/update`, data, {
       headers : this._headers
     }).pipe(tap(
       (e)=> {

@@ -1,0 +1,33 @@
+.full-width-table {
+  width: 100%;
+}
+.no-item{
+  width: 300px;
+}
+.no-item-illustration{
+  width: 100%;
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.search-add{
+  padding: 15px 2px;
+}
+.search-add{
+  padding: 15px 2px;
+}
+input[type='search']{
+  padding: 10px;
+  background: none;
+  border: none;
+  width: 350px;
+}
+.search-cumping{
+  background: rgb(155, 155, 155);
+  height: 40px;
+  border-radius: 45px;
+  width: 400px;
+  margin: 15px 0px;
+}

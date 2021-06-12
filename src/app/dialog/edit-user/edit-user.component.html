@@ -1,0 +1,22 @@
+
+<h1 matDialogTitle>Modifictaion du compte</h1>
+
+<mat-dialog-content>
+
+  <form [formGroup] ="formGroup" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field appearance="fill">
+      <input matInput formControlName="pseudo" placeholder="Identifiant">
+      <mat-error>Nom d'utilisateur incorecte</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input type="password" matInput formControlName="password" placeholder="Mot de passe">
+      <mat-error>Mot de passe incorecte</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions [attr.align]="'end'">
+    <button mat-button matDialogClose>Annuler</button>
+    <button mat-button (click)= "onSubmit()">Modifier</button>
+</mat-dialog-actions>

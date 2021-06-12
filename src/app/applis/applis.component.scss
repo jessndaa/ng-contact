@@ -1,0 +1,31 @@
+.sidenav-container {
+  background-size: cover;
+  height: 100%;
+}
+.spacer{
+  flex: 1 1 auto;
+}
+.user-name{
+  padding-left: 15px;
+  cursor: pointer;
+  &::first-letter{
+    text-transform: uppercase;
+  }
+}
+.user-avatar {
+  font-size: 25px;
+  cursor: pointer;
+}
+.sidenav {
+  width: 60px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

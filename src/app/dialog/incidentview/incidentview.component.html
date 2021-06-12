@@ -1,0 +1,61 @@
+<mat-dialog-content>
+        <div class="content">
+            
+          <mat-tab-group mat-align-tabs="center" [dynamicHeight]="true">
+              <mat-tab *ngIf="isAdd">
+                  <ng-template matTabLabel>
+                      Ajouter Image
+                  </ng-template>
+                  <form [formGroup]="formGroup">
+
+                    <mat-form-field>
+                      <mat-label>Choissez l'Ecran</mat-label>
+                      <mat-select formControlName="Name" placeholder="">
+                        <mat-option *ngFor="let choice of ecran" [value]="choice">
+                          {{choice.Detail}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <p>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Nombre des minutes</mat-label>
+                        <input type="number" formControlName="Time" matInput placeholder="Nombre">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                      </mat-form-field>
+                    </p>
+                    <p>
+                      <mat-progress-bar *ngIf="isFileDown" mode="query"></mat-progress-bar>
+                      <button mat-icon-button (click)="fileUp.click();">
+                          <mat-icon class="mat-18">file_upload</mat-icon>
+                      </button>
+                      {{currentFileName}}
+                      <input #fileUp type="file" accept="image/*" (change)="onFileChange($event)" style="display: none; visibility: hidden;">
+                    </p>
+                    <!-- <button mat-raised-button (click)="onClick">Action</button> -->
+                  </form>
+                  <button mat-raised-button matDialogClose  (click)="onSubmit()">Ajouter L'image</button>
+              </mat-tab>
+              <mat-tab *ngIf="!isAdd">
+                  <ng-template matTabLabel>
+                      Toutes les images
+                  </ng-template>
+                  <mat-card *ngFor="let item of screencontent">
+                      <mat-card-content>
+                        <mat-card class="example-card">
+                            <div class="cropper-div">
+                              <video width="320" autoplay *ngIf="item.Url.split('.')[1] === 'mp4'" [src]="appState + item.Url"></video>
+                              <img *ngIf="item.Url.split('.')[1] !== 'mp4'" mat-card-image [src]="appState + item.Url" alt="Photo of a Shiba Inu">
+                            </div>
+                            <mat-card-actions>
+                              <!-- <button mat-button (click)="onModify(item.Id)">Modifier</button> -->
+                              <button mat-button (click)="onDelete(item.Id)">Supprimer</button> 
+                            </mat-card-actions>
+                          </mat-card>
+                      </mat-card-content>
+                  </mat-card>
+              </mat-tab>
+          </mat-tab-group>
+        </div>
+    </mat-dialog-content>

@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+
+    </mat-toolbar>
+    <mat-nav-list>
+      <!-- <a mat-list-item [routerLink]="['/app']"><mat-icon class="mat-18">assessment</mat-icon></a> -->
+      <a mat-list-item [routerLink]="['/app/table']"><mat-icon class="mat-18">perm_contact_calendar</mat-icon></a>
+      <a mat-list-item (click)="disconnect()"><mat-icon class="mat-18">logout</mat-icon></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <mat-icon [matMenuTriggerFor]="menu" class="user-avatar">
+        account_circle
+      </mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="updateAcount()">Modifier le compte</button>
+        <button mat-menu-item (click)="disconnect()">Deconnexion</button>
+      </mat-menu>
+      <span class="user-name" [matMenuTriggerFor]="menu">
+        {{ (user | async)?.name}}
+      </span>
+
+      <span class="spacer"></span>
+      <button mat-raised-button color="accent" (click)="addContact()">
+        <mat-icon class="mat-18">3p</mat-icon>
+        Ajouter un contact
+      </button>
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <div style="padding: 35px 65px">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,12 @@
+<!-- <h1 matDialogTitle>Title</h1> -->
+
+<mat-dialog-content>
+  <div class="dialog-content">
+    <img class="illustration" [src]="image"/>
+    <p class="dialog-text">{{message}}</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions [attr.align]="'end'">
+    <button mat-button matDialogClose>Ok</button>
+</mat-dialog-actions>

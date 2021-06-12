@@ -1,0 +1,86 @@
+<div *ngIf="temps.length > 0">
+  <div class="search-add" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div class="search-cumping" fxLayoutAlign="start center" fxLayoutGap="6px">
+      <button mat-icon-button>
+          <mat-icon class="mat-6">search</mat-icon>
+      </button>
+      <input type="search" (keyup)="seach($event)" placeholder="Rechercher et trouver les enregistrements de vos bots">
+    </div>
+  </div>
+  <div  class="mat-elevation-z8">
+    <table mat-table class="full-width-table" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="prename">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
+        <td mat-cell *matCellDef="let row">{{row.prename}}</td>
+      </ng-container>
+
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</th>
+        <td mat-cell *matCellDef="let row">{{row.phone}}</td>
+      </ng-container>
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</th>
+        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+        <td mat-cell *matCellDef="let row">{{row.position}}</td>
+      </ng-container>
+
+      <!-- Society Column -->
+      <ng-container matColumnDef="society">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Société</th>
+        <td mat-cell *matCellDef="let row">{{row.society}}</td>
+      </ng-container>
+
+      <!-- SocietyAdress Column -->
+      <ng-container matColumnDef="societyAdress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse Société</th>
+        <td mat-cell *matCellDef="let row">{{row.societyAdress}}</td>
+      </ng-container>
+      <!-- btn modify -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef ></th>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="delete(row)" mat-icon-button aria-label="Supprimer le contact">
+            <mat-icon class="mat-18" >delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <!-- btn delete -->
+      <ng-container matColumnDef="modify">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="modify(row)" mat-icon-button  aria-label="modifier le Contact">
+            <mat-icon class="mat-18">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator
+        [length]="dataSource?.size | async"
+        [pageIndex]="0"
+        [pageSize]="7"
+        [pageSizeOptions]="[7, 14, 28]">
+    </mat-paginator>
+  </div>
+</div>
+<div class="no-item-illustration" *ngIf="this.temps.length < 1">
+  <img class="no-item" src="assets/illustration/undraw_No_data_re_kwbl-svg.png" alt="" srcset="">
+  <h2 style="padding: 50px;">Pas de contact pour l'instant, veuillez ajouter un nouveau contact</h2>
+</div>

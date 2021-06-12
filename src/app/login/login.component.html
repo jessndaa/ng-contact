@@ -1,0 +1,47 @@
+<div class="content-message"
+  fxLayout="row"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign.lt-sm="start"
+  fxLayoutAlign="center center">
+  <div class="message-boarc"
+    fxFlex="60"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayout="column"
+    fxLayoutAlign="center center">
+    <h1>Bienvenue</h1>
+    <img width="70%" src="assets/illustration/undraw_welcome_3gvl-svg.png">
+  </div>
+  <div
+    class="form-controller"
+    fxLayout="column"
+    fxLayoutAlign="center center">
+    <mat-progress-bar *ngIf="isLoading | async" mode="query" color="accent"></mat-progress-bar>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+              <h1 class="mat-display-1 bin-text">Entrez vos informations sur d'authetification</h1>
+              <h4 class="bin-text-error" *ngIf="errorLogged | async">Erreur lors de l'authetification...</h4>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content >
+            <form [formGroup] ="formGroup" fxLayout="column" fxLayoutAlign="center center">
+              <mat-form-field>
+                <input matInput formControlName="pseudo" placeholder="Identifiant">
+                <mat-error>Nom d'utilisateur incorecte</mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input type="password" matInput formControlName="password" placeholder="Mot de passe">
+                <mat-error>Mot de passe incorecte</mat-error>
+              </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="custom" align="end">
+            <button mat-raised-button color="accent" (click)="createAccount()">Créer un compte</button>
+            <button mat-raised-button color="primary" (click)="loginAccount()">Connexion</button>
+        </mat-card-actions>
+        <!-- <div style="height: 1px"></div> -->
+    </mat-card>
+  </div>
+
+</div>

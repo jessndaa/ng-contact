@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ScreenModel} from '../models/incident.models';
 import { MatDialog } from '@angular/material/dialog';
-import { IncidentviewComponent } from './incidentview/incidentview.component';
 import { YesNoComponent } from './yes-no/yes-no.component';
 import { DialogContent, DialogResult } from './dialog_type';
 
